@@ -1,0 +1,10 @@
+name: PTNB
+version: ${project.version}
+main: me.walitam.ptnb.PTNB
+api-version: 1.16
+authors: [ Walitam, Torta ]
+description: Le plugin de The New Build
+commands:
+  sucecouilles:
+    description: Smol command
+    permission: ptnb.sucecouilles
