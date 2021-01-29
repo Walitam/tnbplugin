@@ -14,6 +14,7 @@ public final class PTNB extends JavaPlugin {
         getCommand("tnbtruc").setExecutor(new TNBCommand());
         System.out.println("Le plugin est là !");
         saveDefaultConfig();
+
     }
 
     @Override
