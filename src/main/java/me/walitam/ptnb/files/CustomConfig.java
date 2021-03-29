@@ -9,12 +9,21 @@ import java.io.IOException;
 
 public class CustomConfig {
 
-    private static File file;
-    private static FileConfiguration customFile;
+    private static File guildFile;
+    private static FileConfiguration guildConfigurationFile;
+    
 
-    public static void setup()
+    public static void init() {
+    	
+    	Object[] guildFiles = createFile("guilds_save");
+    	guildFile = (File) guildFiles[0];
+    	guildConfigurationFile = (FileConfiguration) guildFiles[1];
+    	
+    }
+
+    public static Object[] createFile(String fileName)
     {
-        file = new File(Bukkit.getServer().getPluginManager().getPlugin("PTNB").getDataFolder(), "customConfig.yml");
+    	File file = new File(Bukkit.getServer().getPluginManager().getPlugin("PTNB").getDataFolder(), fileName+".yml");
 
         if(!file.exists())
         {
@@ -25,22 +34,25 @@ public class CustomConfig {
                 // BRUH
             }
 
-            customFile = YamlConfiguration.loadConfiguration(file);
-
         }
+
+        FileConfiguration customFile = YamlConfiguration.loadConfiguration(file);
+        
+        
+        return new Object[]{file, customFile};
     }
 
-    public static FileConfiguration get()
+    public static FileConfiguration getGuildConfig()
     {
-        return customFile;
+        return guildConfigurationFile;
     }
 
-    public static void save()
+    public static void saveGuildConfig()
     {
         try {
-            customFile.save(file);
+            guildConfigurationFile.save(guildFile);
         } catch (IOException e) {
-            // BRUH
+            e.printStackTrace();
         }
 
     }

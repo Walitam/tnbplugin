@@ -1,26 +1,31 @@
 package me.walitam.ptnb;
 
 import me.walitam.ptnb.commands.TNBCommand;
-import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
+import me.walitam.ptnb.files.CustomConfig;
+
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class PTNB extends JavaPlugin {
 
+	public final static String TAG = "[TNB]";
+	
+	
     @Override
     public void onEnable() {
         getCommand("tnbtruc").setExecutor(new TNBCommand());
-        System.out.println("Le plugin est là !");
-        saveDefaultConfig();
-
+        
+        
+        //loading configs
+        saveDefaultConfig();	//basic
+        CustomConfig.init();	//customs
+      
+        
+        System.out.println(TAG+ " enabled !");
     }
 
     @Override
     public void onDisable() {
-
-        System.out.println("Le plugin n'est plus là !");
+    	System.out.println(TAG+ " disabled !");
     }
 
 }
